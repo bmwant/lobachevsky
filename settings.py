@@ -3,6 +3,7 @@ from pathlib import Path
 
 
 PROJECT_ROOT = Path(os.path.dirname(os.path.realpath(__file__)))
+TEMPLATES_DIR = PROJECT_ROOT / 'templates'
 
 DEFAULT_DATE_FORMAT = '%d/%m/%y'
 DEFAULT_TIME_FORMAT = '%H:%M'
@@ -11,6 +12,7 @@ DEFAULT_DATETIME_FORMAT = '{} {}'.format(DEFAULT_TIME_FORMAT,
 
 
 # DEVELOPING
+RUN_PORT = 8080
 DEBUG = False
 
 # Override values from settings_local.py

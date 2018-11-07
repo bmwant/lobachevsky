@@ -1,0 +1,3 @@
+ion-icon[id$="-success"], ion-icon[id$="-fail"] {
+  display: none;
+}
