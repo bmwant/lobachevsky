@@ -1,6 +1,11 @@
-ion-icon[id$="-success"], ion-icon[id$="-fail"] {
-  /*display: none;*/
-  visibility: hidden;
+/*ion-icon[id$="-success"], ion-icon[id$="-fail"] {*/
+  /*visibility: hidden;*/
+/*}*/
+
+ion-icon {
+  font-size: 48px;
+  vertical-align: middle;
+  /*position: absolute;*/
 }
 
 .siimple-label {
@@ -15,6 +20,7 @@ ion-icon[id$="-success"], ion-icon[id$="-fail"] {
   font-size: 32px;
   line-height: 36px;
   font-family: inherit;
+  vertical-align: middle;
 }
 
 .siimple-input::-webkit-input-placeholder { /* Chrome/Opera/Safari */

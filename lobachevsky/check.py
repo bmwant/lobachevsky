@@ -65,7 +65,7 @@ async def get_all_user_commits(owner, repo, handle):
 
 def not_text_file(filename):
     name, ext = os.path.splitext(filename)
-    assert ext.lower() not in settings.DOCS_EXTENSIONS
+    return ext.lower() not in settings.DOCS_EXTENSIONS
 
 
 async def is_user_a_contributor(owner, repo, handle):
@@ -79,7 +79,7 @@ async def is_user_a_contributor(owner, repo, handle):
 
     user_commits = await get_all_user_commits(owner, repo, handle)
     # ok, I believe you know
-    if len(user_commits) > 99:
+    if len(user_commits) > settings.MIN_COMMITS_TO_BE_LEGIT:
         logger.info('User %s has bunch of contributions, '
                     'no need to check each commit', handle)
         return CheckResult(

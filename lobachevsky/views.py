@@ -50,11 +50,12 @@ async def check_is_a_contributor(request):
     repo_path = request.query.get('repo')
     owner, repo = repo_path.split('/')
     handle = request.query.get('handle')
+    logger.debug('Checking %s contribution to %s/%s', handle, owner, repo)
     if not all([owner, repo, handle]):
         return web.Response(text='Bad request', status=HTTPStatus.BAD_REQUEST)
 
     result = await is_user_a_contributor(owner, repo, handle)
-
+    logger.debug('%s is a contributor: %s', handle, result.is_contributor)
     return web.json_response({
         'contributor': result.is_contributor,
         'message': result.message,
