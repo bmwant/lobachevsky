@@ -1,3 +1,4 @@
+import os
 import asyncio
 from urllib.parse import urljoin
 from itertools import chain
@@ -19,7 +20,6 @@ AUTH_HEADERS = {
 class CheckResult:
     is_contributor: bool
     message: str
-
 
 
 async def has_any_contribution(owner, repo, handle):
@@ -64,7 +64,8 @@ async def get_all_user_commits(owner, repo, handle):
 
 
 def not_text_file(filename):
-    return True
+    name, ext = os.path.splitext(filename)
+    assert ext.lower() not in settings.DOCS_EXTENSIONS
 
 
 async def is_user_a_contributor(owner, repo, handle):
