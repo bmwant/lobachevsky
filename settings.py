@@ -12,6 +12,8 @@ DEFAULT_DATETIME_FORMAT = '{} {}'.format(DEFAULT_TIME_FORMAT,
 
 
 # DEVELOPING
+BASE_API_URL = 'https://api.github.com'
+ACCESS_TOKEN = ''  # github access token to call REST API
 RUN_PORT = 8080
 DEBUG = False
 

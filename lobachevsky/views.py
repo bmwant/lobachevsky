@@ -5,6 +5,7 @@ from aiohttp import hdrs
 
 import settings
 from lobachevsky.utils import logger
+from lobachevsky.check import is_user_a_contributor
 
 
 @aiohttp_jinja2.template('index.html')
@@ -24,3 +25,10 @@ async def check_handle_is_valid(request):
 async def check_repository_is_valid(request):
 
     return web.Response(text='Ok', status=HTTPStatus.NOT_FOUND)
+
+
+async def check_is_a_contributor(request):
+    owner = ''
+    repo = ''
+    handle = 'bmwant'
+    await is_user_a_contributor(owner, repo, handle)
