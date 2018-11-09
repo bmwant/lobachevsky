@@ -1,3 +1,37 @@
 ion-icon[id$="-success"], ion-icon[id$="-fail"] {
-  display: none;
+  /*display: none;*/
+  visibility: hidden;
 }
+
+.siimple-label {
+  display: block;
+}
+
+.siimple-input {
+  color: #546778;
+  border: 3px solid #ac94e8;
+  background-color: white;
+  padding: 24px 12px;
+  font-size: 32px;
+  line-height: 36px;
+  font-family: inherit;
+}
+
+.siimple-input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #a8bed0;
+}
+
+.pre-input {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 32px;
+  line-height: 36px;
+}
+
+#is-contributor {
+  font-size: 32px;
+  padding: 18px;
+}
+
+/* #93d260 green */
+/* #ee675d red */

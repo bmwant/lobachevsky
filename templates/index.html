@@ -13,32 +13,36 @@
 </head>
 <body>
 <div class="siimple-navbar siimple-navbar--yellow siimple-navbar--fluid">
-    <div class="siimple-layout--left">
-        <a href="/" class="siimple-navbar-title">lobachevsky</a>
-    </div>
-    <div class="siimple-layout--right">
-        <a href="#" class="siimple-navbar-link" target="_blank">Link #1</a>
-        <a href="#" class="siimple-navbar-link" target="_blank">Link #2</a>
-    </div>
+  <div class="siimple-layout--left">
+    <a href="/" class="siimple-navbar-title">lobachevsky</a>
+  </div>
+  <div class="siimple-layout--right">
+    <a href="https://github.com/bmwant/lobachevsky" class="siimple-navbar-link" target="_blank">Link</a>
+  </div>
 </div>
 <div class="siimple-grid">
   <div class="siimple-grid-row">
     <div class="siimple-grid-col siimple-grid-col--6">
       <label class="siimple-label">Github handle</label>
-      <input type="text" class="siimple-input" placeholder="bmwant">
+      <div class="pre-input">https://github.com/</div>
+      <input type="text" class="siimple-input" placeholder="username" name="username">
       <ion-icon id="handle-success" name="checkmark-circle" size="large"></ion-icon>
       <ion-icon id="handle-fail" name="help-circle" size="large"></ion-icon>
-
+    </div>
+  </div>
+  <div class="siimple-grid-row">
+    <div class="siimple-grid-col siimple-grid-col--6">
       <label class="siimple-label">Repository name</label>
-      <input type="text" class="siimple-input" placeholder="sdafas">
+      <div class="pre-input">https://github.com/</div>
+      <input type="text" class="siimple-input" placeholder="owner/repo" name="repository">
       <ion-icon id="repo-success" name="checkmark-circle" size="large"></ion-icon>
       <ion-icon id="repo-fail" name="help-circle" size="large"></ion-icon>
     </div>
   </div>
 
   <div class="siimple-grid-row">
-    <div class="siimple-grid-col siimple-grid-col--12">
-      <div class="siimple-btn siimple-btn--purple">CONTRIBUTOR?</div>
+    <div class="siimple-grid-col siimple-grid-col--6">
+      <div id="is-contributor" class="siimple-btn siimple-btn--purple">CONTRIBUTOR?</div>
     </div>
   </div>
 </div>

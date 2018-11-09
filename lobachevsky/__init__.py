@@ -16,6 +16,7 @@ def setup_routes(app):
     router.add_get('/', views.index)
     router.add_get('/check_handle', views.check_handle_is_valid)
     router.add_get('/check_repository', views.check_repository_is_valid)
+    router.add_get('/check_contributor', views.check_is_a_contributor)
 
 
 def setup_static_routes(app):
