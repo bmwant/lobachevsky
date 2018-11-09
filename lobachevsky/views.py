@@ -3,7 +3,6 @@ from urllib.parse import urljoin
 
 import aiohttp_jinja2
 from aiohttp import web, ClientSession
-from aiohttp import hdrs
 
 import settings
 from lobachevsky.utils import logger
@@ -54,7 +53,9 @@ async def check_is_a_contributor(request):
     if not all([owner, repo, handle]):
         return web.Response(text='Bad request', status=HTTPStatus.BAD_REQUEST)
 
-    r = await is_user_a_contributor(owner, repo, handle)
-    print(r)
+    result = await is_user_a_contributor(owner, repo, handle)
 
-    return web.json_response({'is': r})
+    return web.json_response({
+        'contributor': result.is_contributor,
+        'message': result.message,
+    })

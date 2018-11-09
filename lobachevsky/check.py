@@ -2,6 +2,7 @@ import asyncio
 from urllib.parse import urljoin
 from itertools import chain
 from operator import itemgetter
+from dataclasses import dataclass
 
 from aiohttp import ClientSession
 
@@ -12,6 +13,13 @@ from lobachevsky.utils import logger
 AUTH_HEADERS = {
     'Authorization': f'token {settings.ACCESS_TOKEN}'
 }
+
+
+@dataclass
+class CheckResult:
+    is_contributor: bool
+    message: str
+
 
 
 async def has_any_contribution(owner, repo, handle):
@@ -63,14 +71,20 @@ async def is_user_a_contributor(owner, repo, handle):
     any_contribs = await has_any_contribution(owner, repo, handle)
     if not any_contribs:
         logger.info('User %s does not have any contribution', handle)
-        return False
+        return CheckResult(
+            is_contributor=False,
+            message='No contributions',
+        )
 
     user_commits = await get_all_user_commits(owner, repo, handle)
     # ok, I believe you know
     if len(user_commits) > 99:
         logger.info('User %s has bunch of contributions, '
                     'no need to check each commit', handle)
-        return True
+        return CheckResult(
+            is_contributor=True,
+            message=f'User committed to repository {len(user_commits)} times'
+        )
 
     tasks = [
         get_touched_files_for_commit(owner, repo, commit_sha)
@@ -78,13 +92,9 @@ async def is_user_a_contributor(owner, repo, handle):
     ]
     result = chain.from_iterable(await asyncio.gather(*tasks))
 
-    return any(not_text_file(filename) for filename in result)
-
-
-async def main():
-    pass
-
-
-
-if __name__ == '__main__':
-    asyncio.run(main())
+    is_contributor = any(not_text_file(filename) for filename in result)
+    return CheckResult(
+        is_contributor=is_contributor,
+        message=f'User has {len(user_commits)} commits to the repository and '
+                f'not only changed docs/text files',
+    )
