@@ -14,7 +14,6 @@ DEFAULT_DATETIME_FORMAT = '{} {}'.format(DEFAULT_TIME_FORMAT,
 # DEVELOPING
 BASE_API_URL = 'https://api.github.com'
 ACCESS_TOKEN = ''  # github access token to call REST API
-MIN_COMMITS_TO_BE_LEGIT = 42
 DOCS_EXTENSIONS = [
     '.md',
     '.rst',

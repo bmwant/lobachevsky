@@ -22,6 +22,10 @@ class CheckResult:
     message: str
 
 
+class BunchOfCommits(ValueError):
+    """Raised when a user actually have a lot of commits (more than 30)"""
+
+
 async def has_any_contribution(owner, repo, handle):
     path = f'/repos/{owner}/{repo}/contributors'
     url = urljoin(settings.BASE_API_URL, path)
@@ -59,6 +63,10 @@ async def get_all_user_commits(owner, repo, handle):
                                params=params,
                                headers=AUTH_HEADERS) as response:
             data = await response.json()
+            if 'Link' in response.headers:
+                # More than one page result
+                raise BunchOfCommits('More than one page of commits')
+
             commits = [*map(itemgetter('sha'), data)]
             return commits
 
@@ -77,14 +85,15 @@ async def is_user_a_contributor(owner, repo, handle):
             message='No contributions',
         )
 
-    user_commits = await get_all_user_commits(owner, repo, handle)
-    # ok, I believe you know
-    if len(user_commits) > settings.MIN_COMMITS_TO_BE_LEGIT:
+    try:
+        user_commits = await get_all_user_commits(owner, repo, handle)
+        # ok, I believe you know
+    except BunchOfCommits:
         logger.info('User %s has bunch of contributions, '
                     'no need to check each commit', handle)
         return CheckResult(
             is_contributor=True,
-            message=f'User committed to repository {len(user_commits)} times'
+            message=f'User committed a lot to the repository'
         )
 
     tasks = [
@@ -99,3 +108,13 @@ async def is_user_a_contributor(owner, repo, handle):
         message=f'User has {len(user_commits)} commits to the repository and '
                 f'not only changed docs/text files',
     )
+
+
+async def main():
+    # r = await get_all_user_commits('CITGuru', 'PyInquirer', 'bmwant')
+    r = await get_all_user_commits('bmwant', 'bmwlog', 'bmwant')
+    print(r, len(r))
+
+
+if __name__ == '__main__':
+    asyncio.run(main())
