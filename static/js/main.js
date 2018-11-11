@@ -41,22 +41,32 @@ $(function() {
       });
   });
 
+
+  var resultsModal = $('#results-modal'),
+    overlay = $('#overlay');
+
   $('#is-contributor').click(function() {
-    $('#results-modal').addClass('in');
-    $('#overlay').show();
+    // todo: add spinner
     var handle = $('input[name="handle"]').val();
     var repository = $('input[name="repository"]').val();
 
-    // $.get('/check_contributor', {
-    //   handle: handle,
-    //   repo: repository
-    // }, function () {})
-    //   .always(function (data, status, xhr) {
-    //     if (xhr.status === 200) {
-    //       $('#handle-success').css('visibility', 'visible');
-    //     } else {
-    //       $('#handle-fail').css('visibility', 'visible');
-    //     }
-    //   });
+    $.getJSON('/check_contributor', {
+      handle: handle,
+      repo: repository
+    }, function(data) {
+      resultsModal.addClass('in');
+      overlay.show();
+      $('.modal-text').text(data.message);
+      if(data.contributor) {
+        $('#contributor-btn').show();
+      } else {
+        $('#impostor-btn').show();
+      }
+    });
+  });
+
+  $('.res-buttons .siimple-btn').click(function() {
+    resultsModal.removeClass('in');
+    overlay.hide();
   });
 });

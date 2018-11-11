@@ -88,5 +88,7 @@ ion-icon {
   opacity: 1;
   top: 45%;
 }
-/* #93d260 green */
-/* #f78055 red */
+
+.res-buttons .siimple-btn {
+  display: none;
+}
