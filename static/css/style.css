@@ -1,6 +1,7 @@
-/*ion-icon[id$="-success"], ion-icon[id$="-fail"] {*/
-  /*visibility: hidden;*/
-/*}*/
+ion-icon[id$="-success"], ion-icon[id$="-fail"] {
+  opacity: 0;
+  transition: opacity 200ms ease-in-out;
+}
 
 ion-icon[id$="-fail"] {
   color: #ee675d;
@@ -13,7 +14,7 @@ ion-icon[id$="-success"] {
 ion-icon {
   font-size: 48px;
   vertical-align: middle;
-  /*position: absolute;*/
+  position: absolute;
 }
 
 .siimple-label {

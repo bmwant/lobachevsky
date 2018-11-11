@@ -32,7 +32,8 @@ async def check_handle_is_valid(request):
 
 async def check_repository_is_valid(request):
     repo_path = request.query.get('repo')
-    if not repo_path or '/' not in repo_path:
+    owner, _, repo = repo_path.partition('/')
+    if not (owner and repo):
         return web.Response(text='Bad request', status=HTTPStatus.BAD_REQUEST)
 
     url = urljoin(GITHUB_URL, repo_path)
