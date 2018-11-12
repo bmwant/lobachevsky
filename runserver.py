@@ -1,3 +1,4 @@
+import os
 from functools import partial
 
 import jinja2
@@ -18,8 +19,9 @@ def run():
 
     uprint = partial(print, flush=True)
 
+    port = os.environ.get('PORT', settings.RUN_PORT)
     uprint('Running aiohttp {}'.format(aiohttp.__version__))
-    web.run_app(app, print=uprint, port=settings.RUN_PORT)
+    web.run_app(app, print=uprint, port=int(port))
 
 
 if __name__ == '__main__':
