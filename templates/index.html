@@ -27,44 +27,52 @@
 <div class="siimple-grid">
   <div class="siimple-grid-row">
     <div class="siimple-grid-col siimple-grid-col--6">
-      <label class="siimple-label">Github handle</label>
-      <div class="input-blk">
-        <div class="pre-input">https://github.com/</div>
-        <input type="text" class="siimple-input" placeholder="username" name="handle">
-        <span>
-          <ion-icon id="handle-success" name="checkmark-circle"></ion-icon>
-          <ion-icon id="handle-fail" name="help-circle"></ion-icon>
-        </span>
+      <div class="siimple-grid-row">
+        <div class="siimple-grid-col siimple-grid-col--12">
+          <label class="siimple-label">Github handle</label>
+          <div class="input-blk">
+            <div class="pre-input">https://github.com/</div>
+            <input type="text" class="siimple-input" placeholder="username" name="handle">
+            <span>
+              <ion-icon id="handle-success" name="checkmark-circle"></ion-icon>
+              <ion-icon id="handle-fail" name="help-circle"></ion-icon>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="siimple-grid-row">
+        <div class="siimple-grid-col siimple-grid-col--12">
+          <label class="siimple-label">Repository name</label>
+          <div class="input-blk">
+            <div class="pre-input">https://github.com/</div>
+            <input type="text" class="siimple-input" placeholder="owner/repo" name="repository">
+            <span>
+              <ion-icon id="repo-success" name="checkmark-circle"></ion-icon>
+              <ion-icon id="repo-fail" name="help-circle"></ion-icon>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="siimple-grid-row">
+        <div class="siimple-grid-col siimple-grid-col--12" align="center">
+          <div id="is-contributor" class="siimple-btn siimple-btn--purple">CONTRIBUTOR?</div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="siimple-grid-row">
     <div class="siimple-grid-col siimple-grid-col--6">
-      <label class="siimple-label">Repository name</label>
-      <div class="input-blk">
-        <div class="pre-input">https://github.com/</div>
-        <input type="text" class="siimple-input" placeholder="owner/repo" name="repository">
-        <span>
-          <ion-icon id="repo-success" name="checkmark-circle"></ion-icon>
-          <ion-icon id="repo-fail" name="help-circle"></ion-icon>
-        </span>
-      </div>
+      <iframe width="560" height="315"
+              src="https://www.youtube.com/embed/RNC-aj76zI4"
+              frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
     </div>
   </div>
-
-  <div class="siimple-grid-row">
-    <div class="siimple-grid-col siimple-grid-col--6">
-      <div id="is-contributor" class="siimple-btn siimple-btn--purple">CONTRIBUTOR?</div>
-    </div>
-  </div>
-
-  <div class="modal" id="results-modal" style="">
-    <div class="modal-content">
-      <div class="modal-text"></div>
-      <div class="res-buttons" align="center">
-        <div class="siimple-btn siimple-btn--success" id="contributor-btn">contributor :)</div>
-        <div class="siimple-btn siimple-btn--error" id="impostor-btn">impostor :(</div>
-      </div>
+</div>
+<div class="modal" id="results-modal" style="">
+  <div class="modal-content">
+    <div class="modal-text"></div>
+    <div class="res-buttons" align="center">
+      <div class="siimple-btn siimple-btn--success" id="contributor-btn">contributor :)</div>
+      <div class="siimple-btn siimple-btn--error" id="impostor-btn">impostor :(</div>
     </div>
   </div>
 </div>
