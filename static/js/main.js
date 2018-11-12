@@ -41,14 +41,15 @@ $(function() {
       });
   });
 
-
   var resultsModal = $('#results-modal'),
-    overlay = $('#overlay');
+    overlay = $('#overlay'),
+    contributorBtn = $('#contributor-btn'),
+    impostorBtn =  $('#impostor-btn');
 
   $('#is-contributor').click(function() {
     // todo: add spinner
-    var handle = $('input[name="handle"]').val();
-    var repository = $('input[name="repository"]').val();
+    var handle = $('input[name="handle"]').val(),
+      repository = $('input[name="repository"]').val();
 
     $.getJSON('/check_contributor', {
       handle: handle,
@@ -58,15 +59,17 @@ $(function() {
       overlay.show();
       $('.modal-text').text(data.message);
       if(data.contributor) {
-        $('#contributor-btn').show();
+        contributorBtn.show();
       } else {
-        $('#impostor-btn').show();
+        impostorBtn.show();
       }
     });
   });
 
   $('.res-buttons .siimple-btn').click(function() {
     resultsModal.removeClass('in');
+    contributorBtn.hide();
+    impostorBtn.hide();
     overlay.hide();
   });
 });
